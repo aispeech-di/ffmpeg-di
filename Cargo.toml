@@ -1,13 +1,12 @@
 [package]
 name = "ffmpeg-di"
-version = "1.0.0"
+version = "1.0.1"
 build = "build.rs"
 
 authors = ["yaozhihui<zhihui.yao@aispeech.com>"]
 license = "MIT"
 
 description = "Safe FFmpeg wrapper (FFmpeg 4 5 6 compatible fork of the ffmpeg crate)"
-documentation = "https://docs.rs/ffmpeg-di"
 homepage = "https://github.com/aispeech-di/ffmpeg-di#readme"
 repository = "https://github.com/aispeech-di/ffmpeg-di"
 readme = "README.md"
