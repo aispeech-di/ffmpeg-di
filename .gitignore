@@ -7,3 +7,4 @@ Cargo.lock
 *.swo
 *.swn
 .idea
+.DS_Store
