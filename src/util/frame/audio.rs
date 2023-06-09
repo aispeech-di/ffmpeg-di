@@ -126,41 +126,16 @@ impl Audio {
     }
 
     #[inline]
-    pub fn data<T: Sample>(&self, index: usize) -> &[T] {
+    pub fn data(&self, index: usize) -> &[u8] {
         if index >= self.planes() {
-            panic!("index out of range");
+            panic!("out of bounds");
         }
 
-        if !<T as Sample>::is_valid(self.format(), self.channels()) {
-            panic!("unsupported type");
-        }
-
-        if self.is_planar() {
-            unsafe {
-                slice::from_raw_parts((*self.as_ptr()).data[index] as *const T, self.samples() as usize)
-            }
-        } else {
-            unsafe {
-                slice::from_raw_parts((*self.as_ptr()).data[0] as *const T, (self.samples() * self.channels()) as usize)
-            }
-        }
-    }
-
-
-    #[inline]
-    pub fn packed<T: Sample>(&self) -> &[T] {
         unsafe {
             slice::from_raw_parts(
-                (*self.as_ptr()).data[0] as *const T,
-                (self.samples() * self.channels()) as usize,
+                (*self.as_ptr()).data[index],
+                (*self.as_ptr()).linesize[0] as usize,
             )
-        }
-    }
-
-    #[inline]
-    pub fn planar<T: Sample>(&self, index: usize) -> &[T] {
-        unsafe {
-            slice::from_raw_parts((*self.as_ptr()).data[index] as *const T, self.samples() as usize)
         }
     }
 }
